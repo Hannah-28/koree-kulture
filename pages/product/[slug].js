@@ -1,13 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Layout from '../../components/Layout';
 import data from '../../utils/data';
 import { Store } from '../../utils/Store';
 
 export default function ProductScreen() {
   const { state, dispatch } = useContext(Store);
+  const [isActive, setIsActive] = useState(false);
+ 
+  const router = useRouter();
   const { query } = useRouter();
   const { slug } = query;
   const product = data.products.find((x) => x.slug === slug);
@@ -23,6 +26,9 @@ export default function ProductScreen() {
       return;
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    setIsActive(true);
+    router.push('/cart');
+    // alert(`${product.name} has been added to Cart`)
   };
 
   return (
@@ -30,6 +36,17 @@ export default function ProductScreen() {
       <div className="py-2">
         <Link href="/">back to products</Link>
       </div>
+      {
+        <p
+          style={{
+            backgroundColor: isActive ? 'salmon' : '',
+            color: isActive ? 'white' : '',
+            display: isActive ? 'block' : 'none'
+          }}
+        >
+          {product.name} has been added to cart
+        </p>
+      }
       <div className="grid md:grid-cols-4 gap-6">
         <div className="md:col-span-2 grid grid-cols-1 gap-6">
           <Image
