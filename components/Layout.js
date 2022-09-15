@@ -15,7 +15,7 @@ export default function Layout({ title, children }) {
         <link rel="icon" href="/koreelogo/koree logo icon black@2x.png" />
       </Head>
 
-      <div className="flex min-h-screen flex-col justify-between">
+      <div className="flex min-h-screen flex-col justify-between uppercase">
         <header>
           <nav className="flex h-12 justify-between shadow-md items-center px-4">
             <Link href="/">

@@ -11,6 +11,7 @@ const data = {
       numReviews: 8,
       countInStock: 20,
       description: 'A popular shirt',
+      subImage: ['/images/shirt11.jpg', '/images/shirt12.jpg'],
     },
     {
       name: 'Fit Shirt',
@@ -23,6 +24,7 @@ const data = {
       numReviews: 10,
       countInStock: 20,
       description: 'A popular shirt',
+      subImage: ['/images/shirt21.jpg', '/images/shirt22.jpg'],
     },
     {
       name: 'Slim Shirt',
@@ -35,6 +37,7 @@ const data = {
       numReviews: 3,
       countInStock: 20,
       description: 'A popular shirt',
+      subImage: ['/images/shirt31.jpg'],
     },
     {
       name: 'Golf Pants',
@@ -47,6 +50,7 @@ const data = {
       numReviews: 13,
       countInStock: 20,
       description: 'Smart looking pants',
+      subImage: ['/images/pants11.jpg'],
     },
     {
       name: 'Fit Pants',
@@ -59,6 +63,7 @@ const data = {
       numReviews: 7,
       countInStock: 20,
       description: 'A popular pants',
+      subImage: ['/images/pants21.jpg'],
     },
     {
       name: 'Classic Pants',
@@ -71,6 +76,7 @@ const data = {
       numReviews: 14,
       countInStock: 20,
       description: 'A popular pants',
+      subImage: ['/images/pants31.jpg', '/images/pants32.jpg'],
     },
   ],
 };
