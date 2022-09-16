@@ -10,8 +10,8 @@ export default function Layout({ title, children }) {
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
   useEffect(() => {
-    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
-  },[cart.cartItems])
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, [cart.cartItems]);
   return (
     <>
       <Head>
@@ -22,7 +22,7 @@ export default function Layout({ title, children }) {
         <link rel="icon" href="/koreelogo/koree logo icon black@2x.png" />
       </Head>
 
-      <div className="flex min-h-screen flex-col justify-between uppercase">
+      <div className="flex min-h-screen flex-col justify-between">
         <header>
           <nav className="flex h-12 justify-between shadow-md items-center px-4">
             <Link href="/">
