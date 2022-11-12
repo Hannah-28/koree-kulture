@@ -25,8 +25,8 @@ const data = {
       brand: 'Nike',
       rating: 4.5,
       numReviews: 8,
-      countInStock: 20,
-      description: 'A popular shirt',
+      countInStock: 3,
+      description: 'A popular shirt With Autumn just around the corner, make sure you shore up the chic with some of Conquista’s best from the AW Collection.',
       subImage: ['/images/shirt11.jpg', '/images/shirt12.jpg'],
     },
     {
@@ -38,8 +38,8 @@ const data = {
       brand: 'Adidas',
       rating: 3.2,
       numReviews: 10,
-      countInStock: 20,
-      description: 'A popular shirt',
+      countInStock: 0,
+      description: 'A popular shirt With Autumn just around the corner, make sure you shore up the chic with some of Conquista’s best from the AW Collection.',
       subImage: ['/images/shirt21.jpg', '/images/shirt22.jpg'],
     },
     {
@@ -52,7 +52,7 @@ const data = {
       rating: 4.5,
       numReviews: 3,
       countInStock: 20,
-      description: 'A popular shirt',
+      description: 'A popular shirt With Autumn just around the corner, make sure you shore up the chic with some of Conquista’s best from the AW Collection.',
       subImage: ['/images/shirt31.jpg'],
     },
     {
@@ -65,7 +65,7 @@ const data = {
       rating: 2.9,
       numReviews: 13,
       countInStock: 20,
-      description: 'Smart looking pants',
+      description: 'Smart looking pants With Autumn just around the corner, make sure you shore up the chic with some of Conquista’s best from the AW Collection.',
       subImage: ['/images/pants11.jpg'],
     },
     {
@@ -78,7 +78,7 @@ const data = {
       rating: 3.5,
       numReviews: 7,
       countInStock: 20,
-      description: 'A popular pants',
+      description: 'A popular pants With Autumn just around the corner, make sure you shore up the chic with some of Conquista’s best from the AW Collection.',
       subImage: ['/images/pants21.jpg'],
     },
     {
@@ -91,7 +91,7 @@ const data = {
       rating: 2.4,
       numReviews: 14,
       countInStock: 20,
-      description: 'A popular pants',
+      description: 'A popular pants With Autumn just around the corner, make sure you shore up the chic with some of Conquista’s best from the AW Collection.',
       subImage: ['/images/pants31.jpg', '/images/pants32.jpg'],
     },
   ],

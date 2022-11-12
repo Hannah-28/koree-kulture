@@ -49,14 +49,14 @@ export default function ShippingScreen() {
     <Layout title="Checkout">
       <CheckoutWizard activeStep={1} />
       <form
-        className="mx-auto max-w-screen-md"
+        className="mx-auto w-3/4"
         onSubmit={handleSubmit(submitHandler)}
       >
-        <h1 className="mb-4 text-xl">Shipping Address</h1>
+        <h1 className="mb-4 text-xl font-bold">Shipping Address</h1>
         <div className="mb-4">
           <label htmlFor="fullName">Full Name</label>
           <input
-            className="w-full"
+            className="w-full mt-4"
             id="fullName"
             autoFocus
             {...register('fullName', {
@@ -70,7 +70,7 @@ export default function ShippingScreen() {
         <div className="mb-4">
           <label htmlFor="address">Address</label>
           <input
-            className="w-full"
+            className="w-full mt-4"
             id="address"
             {...register('address', {
               required: 'Please enter address',
@@ -84,7 +84,7 @@ export default function ShippingScreen() {
         <div className="mb-4">
           <label htmlFor="city">City</label>
           <input
-            className="w-full"
+            className="w-full mt-4"
             id="city"
             {...register('city', {
               required: 'Please enter full city',
@@ -97,7 +97,7 @@ export default function ShippingScreen() {
         <div className="mb-4">
           <label htmlFor="postalCode">Postal Code</label>
           <input
-            className="w-full"
+            className="w-full mt-4"
             id="postalCode"
             {...register('postalCode', {
               required: 'Please enter postal code',
@@ -110,7 +110,7 @@ export default function ShippingScreen() {
         <div className="mb-4">
           <label htmlFor="country">Country</label>
           <input
-            className="w-full"
+            className="w-full mt-4"
             id="country"
             {...register('country', {
               required: 'Please enter country',

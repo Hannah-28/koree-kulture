@@ -1,11 +1,12 @@
-import Link from 'next/link';
 import React, { useEffect } from 'react';
 import { signIn, useSession } from 'next-auth/react';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import Layout from '../components/Layout';
 import { getError } from '../utils/error';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
+
 
 export default function LoginScreen() {
   const { data: session } = useSession();
@@ -40,10 +41,10 @@ export default function LoginScreen() {
   return (
     <Layout title="Login">
       <form
-        className="mx-auto max-w-screen-md"
+        className="mx-auto w-5/6"
         onSubmit={handleSubmit(submitHandler)}
       >
-        <h1 className="mb-4 text-xl">Login</h1>
+        <h1 className="mb-4 text-xl font-bold">Login</h1>
         <div className="mb-4">
           <label htmlFor="email">Email</label>
           <input
@@ -55,7 +56,7 @@ export default function LoginScreen() {
                 message: 'Please enter vaild email',
               },
             })}
-            className="w-full"
+            className="w-full mt-4"
             id="email"
             autoFocus
           ></input>
@@ -71,7 +72,7 @@ export default function LoginScreen() {
               required: 'Please enter password',
               minLength: { value: 6, message: 'password is more than 5 chars' },
             })}
-            className="w-full"
+            className="w-full mt-4"
             id="password"
           ></input>
           {errors.password && (
@@ -83,7 +84,7 @@ export default function LoginScreen() {
         </div>
         <div className="mb-4">
           Don&apos;t have an account? &nbsp;
-          <Link href="register">Register</Link>
+          <Link href="/register" className='hover:text-blue-600 duration-1000 delay-100'>Register</Link>
         </div>
       </form>
     </Layout>

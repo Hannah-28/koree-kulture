@@ -5,6 +5,8 @@ import Link from 'next/link';
 import React, { useContext, useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { Menu } from '@headlessui/react';
+import { ShoppingBagIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import 'react-toastify/dist/ReactToastify.css';
 import { Store } from '../utils/Store';
 import DropdownLink from './DropdownLink';
@@ -40,30 +42,77 @@ export default function Layout({ title, children }) {
 
       <div className="flex min-h-screen flex-col justify-between">
         <header>
-          <nav className="flex h-12 justify-between shadow-md items-center px-4">
+          <nav className="flex h-20 justify-between fixed top-0 shadow-md items-center px-4 w-full z-50 bg-black text-white">
             <Link href="/">
               <a className="text-lg font-bold">KOREE KULTURE</a>
               {/* <Image src={Logo} alt="logo" width='100%' height='100%' /> */}
             </Link>
-            <div>
+            <div className="space-x-4">
               <Link href="/cart">
-                <a className="p-2">
-                  Cart
-                  {cartItemsCount > 0 && (
-                    <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                      {cartItemsCount}
+                <a className="mover">
+                  {cartItemsCount > 0 ? (
+                    // <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                    //   {cartItemsCount}
+                    // </span>
+                    <span>
+                      <span>Cart</span>
+                      <span className="mx-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold">
+                        {cartItemsCount}
+                      </span>
+                      <ShoppingBagIcon className="w-5 h-5 inline"></ShoppingBagIcon>
+                    </span>
+                  ) : (
+                    <span>
+                      <span>Cart</span>
+                      <span className="mx-1 rounded-full bg-black px-2 py-1 text-xs font-bold">
+                        {cartItemsCount}
+                      </span>
+                      <ShoppingBagIcon className="w-5 h-5 inline"></ShoppingBagIcon>
                     </span>
                   )}
                 </a>
               </Link>
+              <Link href="/">
+                <a className="mover">Products</a>
+              </Link>
+              <Menu as="div" className="relative inline-block">
+                <Menu.Button className="mover">
+                  About
+                  <ChevronDownIcon
+                    className='h-5 w-5 inline ml-2'
+                  />
+                </Menu.Button>
+                <Menu.Items className="absolute right-0 w-56 origin-top-right shadow-lg bg-white text-black z-50">
+                  <Menu.Item>
+                    <DropdownLink className="dropdown-link" href="/">
+                      About Us
+                    </DropdownLink>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <DropdownLink className="dropdown-link" href="/">
+                      Size Chart
+                    </DropdownLink>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <DropdownLink className="dropdown-link" href="/">
+                      FAQ
+                    </DropdownLink>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <DropdownLink className="dropdown-link" href="/">
+                      Contact Us
+                    </DropdownLink>
+                  </Menu.Item>
+                </Menu.Items>
+              </Menu>
               {status === 'loading' ? (
                 'Loading'
               ) : session?.user ? (
                 <Menu as="div" className="relative inline-block">
-                  <Menu.Button className="text-blue-600">
+                  <Menu.Button className="text-blue-400 mover">
                     {session.user.name}
                   </Menu.Button>
-                  <Menu.Items className="absolute right-0 w-56 origin-top-right shadow-lg bg-white">
+                  <Menu.Items className="absolute right-0 w-56 origin-top-right shadow-lg bg-white text-black z-50">
                     <Menu.Item>
                       <DropdownLink className="dropdown-link" href="/profile">
                         Profile
@@ -90,13 +139,13 @@ export default function Layout({ title, children }) {
                 </Menu>
               ) : (
                 <Link href="/login">
-                  <a className="p-2">Login</a>
+                  <a className="mover">Login</a>
                 </Link>
               )}
             </div>
           </nav>
         </header>
-        <main className="container m-auto mt-4 px-4">{children}</main>
+        <main className="container m-auto mt-24">{children}</main>
         <footer className="flex justify-center items-center h-10 shadow-inner">
           <p>&copy; 2022 KOREE KULTURE, ALL RIGHTS RESERVED</p>
         </footer>
