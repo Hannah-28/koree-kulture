@@ -7,6 +7,7 @@ import { Store } from '../utils/Store';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import dynamic from 'next/dynamic';
+import axios from 'axios';
 
 function CartScreen() {
   const router = useRouter();
@@ -16,15 +17,18 @@ function CartScreen() {
   } = state;
   const removeItemHandler = (item) => {
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
-    toast.error(`${item.name} has been removed`)
+    toast.error(`${item.name} has been removed`);
   };
-  const updateCartHandler = (item, qty, siz) => {
+  const updateCartHandler = async (item, qty) => {
     const quantity = Number(qty);
-    const size = siz
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity, size } });
-    toast.success(`${item.name} has been updated`)
+    const { data } = await axios.get(`/api/products/${item._id}`);
+    if (data.countInStock < quantity) {
+      return toast.error('Sorry. Product is out of stock');
+    }
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
+    toast.success(`${item.name} has been updated`);
   };
-  console.log(cartItems)
+  console.log(cartItems);
   return (
     <Layout title="Cart">
       <h1 className="mb-4 text-xl font-bold mx-4">Shopping Cart</h1>
@@ -102,13 +106,13 @@ function CartScreen() {
                   )
                 </div>
                 <div className="mb-4 flex justify-between font-light border-b border-gray-300 pb-4">
-                  <div className='font-normal'>Subtotal</div>
+                  <div className="font-normal">Subtotal</div>
                   <div>
                     #{cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
                   </div>
                 </div>
                 <div className="mb-4 flex justify-between font-light border-b border-gray-300 pb-4">
-                  <div className='font-normal'>Shipping</div>
+                  <div className="font-normal">Shipping</div>
                   <div>
                     #
                     {cartItems.reduce(
@@ -118,12 +122,14 @@ function CartScreen() {
                   </div>
                 </div>
                 <div className="mb-4 flex justify-between font-light border-b border-gray-300 pb-4">
-                  <div className='font-normal'>Total</div>
+                  <div className="font-normal">Total</div>
                   <div>
-                    # {cartItems.reduce((a, c) => a + c.quantity * c.price, 0) + cartItems.reduce(
-                      (a, c) => 0.1 * (a + c.quantity * c.price),
-                      0
-                    ) }
+                    #{' '}
+                    {cartItems.reduce((a, c) => a + c.quantity * c.price, 0) +
+                      cartItems.reduce(
+                        (a, c) => 0.1 * (a + c.quantity * c.price),
+                        0
+                      )}
                   </div>
                 </div>
               </li>
