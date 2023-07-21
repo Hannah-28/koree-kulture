@@ -28,7 +28,7 @@ function CartScreen() {
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
     toast.success(`${item.name} has been updated`);
   };
-  console.log(cartItems);
+ 
   return (
     <Layout title="Cart">
       <h1 className="mb-4 text-xl font-bold mx-4">Shopping Cart</h1>
@@ -111,7 +111,7 @@ function CartScreen() {
                     #{cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
                   </div>
                 </div>
-                <div className="mb-4 flex justify-between font-light border-b border-gray-300 pb-4">
+                {/* <div className="mb-4 flex justify-between font-light border-b border-gray-300 pb-4">
                   <div className="font-normal">Shipping</div>
                   <div>
                     #
@@ -120,16 +120,18 @@ function CartScreen() {
                       0
                     )}
                   </div>
-                </div>
+                </div> */}
                 <div className="mb-4 flex justify-between font-light border-b border-gray-300 pb-4">
                   <div className="font-normal">Total</div>
                   <div>
                     #{' '}
-                    {cartItems.reduce((a, c) => a + c.quantity * c.price, 0) +
-                      cartItems.reduce(
-                        (a, c) => 0.1 * (a + c.quantity * c.price),
-                        0
-                      )}
+                    {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
+                    //  +
+                    //   cartItems.reduce(
+                    //     (a, c) => 0.1 * (a + c.quantity * c.price),
+                    //     0
+                    //   )
+                      }
                   </div>
                 </div>
               </li>
