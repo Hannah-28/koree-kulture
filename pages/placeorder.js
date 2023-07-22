@@ -59,7 +59,7 @@ export default function PlaceOrderScreen() {
       <CheckoutWizard activeStep={3} />
       <h1 className="mb-4 text-xl">Place Order</h1>
       {cartItems.length === 0 ? (
-        <div className="mx-4">
+        <div>
           Cart is empty. <Link href="/">Go Shopping</Link>
         </div>
       ) : (
@@ -83,7 +83,7 @@ export default function PlaceOrderScreen() {
                 <Link href="/payment">Edit</Link>
               </div>
             </div>
-            <div className="card overflow-x-auto p-5">
+            <div className="card p-5">
               <h2 className="mb-2 text-lg">Order Items</h2>
               <table className="min-w-full">
                 <thead className="border-b uppercase font-bold">
