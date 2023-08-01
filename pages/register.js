@@ -33,6 +33,9 @@ export default function LoginScreen() {
         email,
         password,
       });
+      setTimeout(() => {
+        toast.success(`Welcome, ${name} to Koree-Kulture`);
+      }, 3000);
 
       const result = await signIn('credentials', {
         redirect: false,
@@ -48,10 +51,7 @@ export default function LoginScreen() {
   };
   return (
     <Layout title="Create Account">
-      <form
-        className="mx-auto w-5/6"
-        onSubmit={handleSubmit(submitHandler)}
-      >
+      <form className="mx-auto w-5/6" onSubmit={handleSubmit(submitHandler)}>
         <h1 className="mb-4 text-xl font-bold">Create Account</h1>
         <div className="mb-4">
           <label htmlFor="name">Name</label>

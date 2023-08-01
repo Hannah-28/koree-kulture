@@ -11,10 +11,10 @@ export default function ProductItem({ product }) {
         </a>
       </Link>
 
-      <div className="flex flex-col items-center justify-center p-5 bg-gray-50 w-full">
+      <div className="flex flex-col items-center justify-center p-5 bg-gray-50 w-full text-center text-xs md:text-base">
         <Link href={`/products/${product.slug}`}>
           <a className='mb-1'>
-            <h2 className="text-md font-semibold uppercase">{product.name}</h2>
+            <h2 className="font-semibold uppercase">{product.name}</h2>
           </a>
         </Link>
         <p className='text-gray-700 font-normal mb-1'>#{product.price}</p>

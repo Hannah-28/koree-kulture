@@ -14,15 +14,14 @@ export default function ContactScreen() {
     emailjs
       .sendForm('gmail ', 'template_gk9vjvi', e.target, 'G2lpCxE7Bm_KknnOI')
       .then(
-        (result) => {
-          console.log(result.text);
+        () => {
           toast.success(
             'We will respond to you via your email as soon as possible.'
           );
           e.target.reset();
         },
-        (error) => {
-          console.log(error.text);
+        () => {
+          toast.error('There was an error in your form');
           e.target.reset();
         }
       );

@@ -58,15 +58,15 @@ function OrderScreen() {
 
   return (
     <Layout title={`Order ${orderId}`}>
-      <h1 className="mb-4 text-xl">{`Order ${orderId}`}</h1>
+      <h1 className="mb-4 text-xl mx-4">{`Order ${orderId}`}</h1>
       {loading ? (
-        <div>Loading...</div>
+        <div className="mx-4">Loading...</div>
       ) : error ? (
         <div className="alert-error">{error}</div>
       ) : (
-        <div className="grid md:grid-cols-4 md:gap-5">
-          <div className="md:col-span-3">
-            <div className="card p-5">
+        <div className="grid mx-4 md:grid-cols-5 md:gap-5">
+          <div className="overflow-x-auto md:col-span-3">
+            <div className="overflow-x-auto card p-5">
               <h2 className="mb-2 text-lg">Shipping Address</h2>
               <h3>{shippingAddress.fullName}</h3>
               <div className="italic mt-2">
@@ -80,7 +80,7 @@ function OrderScreen() {
               )}
             </div>
 
-            <div className="card p-5">
+            <div className="card overflow-x-auto p-5">
               <h2 className="mb-2 text-lg">Payment Method</h2>
               <div>{paymentMethod}</div>
               {isPaid ? (
@@ -90,13 +90,14 @@ function OrderScreen() {
               )}
             </div>
 
-            <div className="card p-5">
+            <div className="card overflow-x-auto p-5">
               <h2 className="mb-2 text-lg">Order Items</h2>
-              <table className="min-w-full">
+              <table className="min-w-full hidden md:block">
                 <thead className="border-b uppercase font-bold">
                   <th className="px-5 text-left">Item</th>
                   <th className="p-5 text-right">Price</th>
                   <th className="p-5 text-right">Quantity</th>
+                  <th className="p-5 text-right">Size</th>
                   <th className="p-5 text-right">Subtotal</th>
                 </thead>
                 <tbody>
@@ -117,6 +118,7 @@ function OrderScreen() {
                       </td>
                       <td className="p-5 text-right">#{item.price}</td>
                       <td className="p-5 text-right">{item.quantity}</td>
+                      <td className="p-5 text-right">{item.size}</td>
                       <td className="p-5 text-right">
                         #{item.quantity * item.price}
                       </td>
@@ -124,10 +126,43 @@ function OrderScreen() {
                   ))}
                 </tbody>
               </table>
+              {orderItems.map((item) => (
+                <div
+                  key={item.slug}
+                  className="block py-6 border-t gap-8 text-sm md:hidden grid grid-cols-3"
+                >
+                  <div className="col-span-1 grid space-y-10 content-between justify-center">
+                    <Link href={`/product/${item.slug}`}>
+                      <a>
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          width={90}
+                          height={140}
+                        />
+                      </a>
+                    </Link>
+                  </div>
+                  <div className="col-span-2 grid content-between">
+                    <Link href={`/product/${item.slug}`}>
+                      <a>
+                        <p className="font-medium"> {item.name}</p>
+                      </a>
+                    </Link>
+                    <p className="font-base">
+                      Size:<span> {item.size}</span>
+                    </p>
+                    <p className="font-base">
+                      Quantity:<span> {item.quantity}</span>
+                    </p>
+                    <p className="font-medium">#{item.quantity * item.price}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-          <div>
-            <div className="card p-5">
+          <div className="overflow-x-auto md:col-span-2">
+            <div className="card overflow-x-auto p-5">
               <h2 className="mb-2 text-lg">Order Summary</h2>
               <ul>
                 <li>
@@ -149,7 +184,7 @@ function OrderScreen() {
                   </div>
                 </li>
                 <li>
-                  <div className="mb-2 flex justify-between">
+                  <div className="mb-2 flex justify-between font-bold">
                     <div>Total</div>
                     <div>#{totalPrice}</div>
                   </div>

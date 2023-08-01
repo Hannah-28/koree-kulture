@@ -37,6 +37,7 @@ export default function LoginScreen() {
       toast.error(getError(err));
     }
   };
+  
   return (
     <Layout title="Login">
       <form className="mx-auto w-5/6" onSubmit={handleSubmit(submitHandler)}>

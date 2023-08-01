@@ -33,20 +33,21 @@ function CartScreen() {
 
   return (
     <Layout title="Cart">
-      <h1 className="mb-4 text-xl font-bold">Shopping Cart</h1>
+      <h1 className="mb-4 text-xl font-bold mx-4">Shopping Cart</h1>
       {cartItems.length === 0 ? (
-        <div>
+        <div className="mx-4">
           Cart is empty. <Link href="/">Go Shopping</Link>
         </div>
       ) : (
         <div className="grid md:grid-cols-4 md:gap-5 mx-4">
-          <div className="overflow-x-auto md:col-span-4">
-            <table className="min-w-full">
+          <div className="overflow-x-auto md:col-span-4 hidden md:block">
+            <table className="min-w-full ">
               <thead className="border-b uppercase font-bold">
                 <tr>
                   <th className="px-5 text-left">Item</th>
                   <th className="p-5 text-right">Price</th>
                   <th className="p-5 text-right">Quantity</th>
+                  <th className="p-5 text-right">Size</th>
                   <th className="p-5 text-right">Subtotal</th>
                   <th className="p-5"></th>
                 </tr>
@@ -82,12 +83,13 @@ function CartScreen() {
                         ))}
                       </select>
                     </td>
+                    <td className="p-5 text-right">{item.size}</td>
                     <td className="p-5 text-right">
                       #{item.quantity * item.price}
                     </td>
                     <td className="p-5 text-center">
                       <button onClick={() => removeItemHandler(item)}>
-                        <XMarkIcon className="h-5 w-5"></XMarkIcon>
+                        <XMarkIcon className="h-5 w-5 text-red-600"></XMarkIcon>
                       </button>
                     </td>
                   </tr>
@@ -95,6 +97,48 @@ function CartScreen() {
               </tbody>
             </table>
           </div>
+          {cartItems.map((item) => (
+            <div
+              key={item.slug}
+              className="block py-6 border-t gap-8 text-sm md:hidden grid grid-cols-3"
+            >
+              <div className="col-span-1 grid space-y-10 content-between justify-center">
+                <Link href={`/product/${item.slug}`}>
+                  <a>
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      width={90}
+                      height={140}
+                    />
+                  </a>
+                </Link>
+                <button onClick={() => removeItemHandler(item)}>
+                  <p className="text-red-600 text-xs">REMOVE</p>
+                </button>
+              </div>
+              <div className="col-span-2 grid content-between">
+                <Link href={`/product/${item.slug}`}>
+                  <a>
+                    <p className="font-medium"> {item.name}</p>
+                  </a>
+                </Link>
+                <p className='font-base'>Size:<span> {item.size}</span></p>
+                <p className='font-medium'>#{item.quantity * item.price}</p>
+                <select
+                  value={item.quantity}
+                  onChange={(e) => updateCartHandler(item, e.target.value)}
+                >
+                  {[...Array(item.countInStock).keys()].map((x) => (
+                    <option key={x + 1} value={x + 1}>
+                      {x + 1}
+                    </option>
+                  ))}
+                </select>
+                
+              </div>
+            </div>
+          ))}
           <div className="my-20 md:col-span-4">
             <ul>
               <li>
@@ -127,8 +171,8 @@ function CartScreen() {
                     )}
                   </div>
                 </div>
-                <div className="mb-4 flex justify-between font-light border-b border-gray-300 pb-4">
-                  <div className="font-normal">Total</div>
+                <div className="mb-4 flex justify-between font-bold border-b border-gray-300 pb-4">
+                  <div>Total</div>
                   <div>
                     #{' '}
                     {round2(
