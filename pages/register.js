@@ -33,10 +33,6 @@ export default function LoginScreen() {
         email,
         password,
       });
-      setTimeout(() => {
-        toast.success(`Welcome, ${name} to Koree-Kulture`);
-      }, 3000);
-
       const result = await signIn('credentials', {
         redirect: false,
         email,

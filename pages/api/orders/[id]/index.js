@@ -1,13 +1,13 @@
 // /api/orders/:id
-import { getSession } from 'next-auth/react';
+import { getSession } from "next-auth/react";
 
-import db from '../../../utils/db';
-import Order from '../../../models/Orders';
+import db from "../../../../utils/db";
+import Order from "../../../../models/Orders";
 
 const handler = async (req, res) => {
   const session = await getSession({ req });
   if (!session) {
-    return res.status(401).send('Sign-in required');
+    return res.status(401).send("Sign-in required");
   }
 
   await db.connect();
