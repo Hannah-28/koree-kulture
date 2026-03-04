@@ -12,7 +12,7 @@ export default function ContactScreen() {
     e.preventDefault();
 
     emailjs
-      .sendForm('gmail ', 'template_gk9vjvi', e.target, 'G2lpCxE7Bm_KknnOI')
+      .sendForm('gmail ', 'template_mtizg57', e.target, 'user_efAXMVQb81YkkbYWM5gEv')
       .then(
         () => {
           toast.success(
