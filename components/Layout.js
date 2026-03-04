@@ -86,16 +86,6 @@ export default function Layout({ title, children }) {
                 </Menu.Button>
                 <Menu.Items className="absolute right-0 w-56 origin-top-right shadow-lg bg-white text-black z-50">
                   <Menu.Item>
-                    <DropdownLink className="dropdown-link" href="/">
-                      About Us
-                    </DropdownLink>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <DropdownLink className="dropdown-link" href="/">
-                      Size Chart
-                    </DropdownLink>
-                  </Menu.Item>
-                  <Menu.Item>
                     <DropdownLink className="dropdown-link" href="/faq">
                       FAQ
                     </DropdownLink>
@@ -149,7 +139,7 @@ export default function Layout({ title, children }) {
         </header>
         <main className="container m-auto mt-24">{children}</main>
         <footer className="flex justify-center items-center text-center h-10 shadow-inner text-xs md:text-base">
-          <p>&copy; 2022 KOREE KULTURE, ALL RIGHTS RESERVED</p>
+          <p>&copy; {new Date().toLocaleDateString('en-us', { year: 'numeric' })}{' '} KOREE KULTURE, ALL RIGHTS RESERVED.</p>
         </footer>
       </div>
     </>
