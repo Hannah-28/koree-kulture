@@ -12,18 +12,23 @@ export default function ContactScreen() {
     e.preventDefault();
 
     emailjs
-      .sendForm('gmail ', 'template_mtizg57', e.target, 'user_efAXMVQb81YkkbYWM5gEv')
+      .sendForm(
+        'gmail',
+        'template_mtizg57',
+        e.target,
+        'user_efAXMVQb81YkkbYWM5gEv',
+      )
       .then(
         () => {
           toast.success(
-            'The team will respond to you via your email as soon as possible.'
+            'We will respond to you via your email as soon as possible.',
           );
           e.target.reset();
         },
         () => {
           toast.error('There was an error in your form');
           e.target.reset();
-        }
+        },
       );
   }
   return (
